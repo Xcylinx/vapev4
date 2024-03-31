@@ -675,7 +675,7 @@ runcode(function()
 	local Killaura = {["Enabled"] = false}
 	local killauratick = tick()
     local killauraremote = remotes.meleePlayer
-	local killauraremote2 = repstorage:WaitForChild("remoteInterface"):WaitForChild("interactions"):WaitForChild("meleeAnimal")
+	local killauraremote2 = remotes.meleeAI
 	local killauraanimdelay = tick()
 	local killauraanimnum = 0
 
