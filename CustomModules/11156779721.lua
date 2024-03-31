@@ -223,7 +223,7 @@ local function GetAllNearestHumanoidToPosition(player, distance, amount, checkta
             end
         end
 		for i, v in pairs(animals) do 
-            if v.PrimaryPart and currentamount < amount then -- checks
+            if v.PrimaryPart and currentamount < amount and v:FindFirstChild("Humanoid") then -- checks
 				local mag = (entity.character.HumanoidRootPart.Position - v.PrimaryPart.Position).magnitude
 				if mag > distance then 
 					mag = ((localserverpos or entity.character.HumanoidRootPart.Position) - v.PrimaryPart.Position).magnitude
