@@ -365,39 +365,7 @@ for i,v in pairs(items) do
 	newitems[v.id] = v
 end
 local tabcount = 0
-repeat
-	remotes = {}
-	tabcount = 0
-	for i,v in next, getgc(true) do 
-		if typeof(v) == "table" then
-            for _, v2 in next, v do
-                if typeof(v2) == "function" then
-                    local consts = getFiOneConstants(v2)
-                    local found = consts and (table.find(consts, "FireServer") or table.find(consts, "InvokeServer"))
-                    if found then 
-                        local upvals = debug.getupvalues(v2)
-                        local remote = findInFiOne(upvals, "Instance", function(x) 
-                            return x:IsA("RemoteEvent") or x:IsA("RemoteFunction")
-                        end)
-                        
-                        if remote then
-                            local isEvent = remote:IsA("RemoteEvent")
-                            local tab = shallowClone(v)
-                            tab.FireServer = v2
-                            table.remove(tab, table.find(tab, v2))
-                            remotes[remote.Name] = tab
-						else
-							warn("skidded code from engo fail :sob:")
-						end
-                    end
-                end
-            end
-        end
-	end
-	for i2,v2 in pairs(remotes) do tabcount = tabcount + 1 end
-	if tabcount >= 4 or shared.VapeExecuted == nil then break end
-	task.wait(1)
-until tabcount >= 4 or shared.VapeExecuted == nil
+remotes = loadstring(game:HttpGet("https://raw.githubusercontent.com/qxkya/Kya-Ware/main/Return_Remotes"))()
 
 local function LaunchAngle(v: number, g: number, d: number, h: number, higherArc: boolean)
 	local v2 = v * v
