@@ -190,11 +190,11 @@ local function runcode(func)
 end
 
 local animals = {}
-animals = workspace.animals:GetChildren()
-workspace.animals.ChildAdded:Connect(function(obj)
+animals = workspace["AI_Server"]:GetChildren()
+workspace["AI_Server"].ChildAdded:Connect(function(obj)
 	table.insert(animals, obj)
 end)
-workspace.animals.ChildRemoved:Connect(function(obj)
+workspace["AI_Server"].ChildRemoved:Connect(function(obj)
 	table.remove(animals, table.find(animals, obj))
 end)
 
@@ -353,7 +353,7 @@ local function remoteCheck(tab)
 end 
 
 local remotes
-local clientEnv = getsenv(lplr.PlayerScripts.client)
+-- local clientEnv = getsenv(lplr.PlayerScripts.client)
 local itemhandler = require(repstorage.game.Items)
 local items = debug.getupvalue(itemhandler.getItemData, 1)
 local projectiles = require(repstorage.modules.game.Projectiles)
